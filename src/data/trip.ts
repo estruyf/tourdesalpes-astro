@@ -70,8 +70,8 @@ export const tripData: Day[] = [
       evCharging: true,
     },
     ride: {
-      distance: 92,
-      elevation: 2780,
+      distance: 91,
+      elevation: 3138,
       cols: [{ name: "Col de l'Iseran", elevation: 2764 }],
       description:
         "De hoogste bergpas in de Alpen! Een spectaculaire klim naar de Col de l'Iseran op 2764m. Dit is de kroon op de eerste echte klimdag.",
@@ -94,8 +94,8 @@ export const tripData: Day[] = [
       evCharging: false,
     },
     ride: {
-      distance: 95,
-      elevation: 2200,
+      distance: 113,
+      elevation: 2085,
       cols: [{ name: "Mont Cenis", elevation: 2083 }],
       description:
         "Via Mont Cenis richting Saint Michel de Maurienne. Een prachtige route door het grensgebied met Italië.",
@@ -118,8 +118,8 @@ export const tripData: Day[] = [
       evCharging: false,
     },
     ride: {
-      distance: 129,
-      elevation: 2400,
+      distance: 92.8,
+      elevation: 3173,
       cols: [
         { name: "Col du Télégraphe", elevation: 1566 },
         { name: "Col du Galibier", elevation: 2645 },
@@ -175,8 +175,8 @@ export const tripData: Day[] = [
       evCharging: true,
     },
     ride: {
-      distance: 130,
-      elevation: 1950,
+      distance: 143.2,
+      elevation: 4141,
       cols: [{ name: "Col de la Cayolle", elevation: 2326 }],
       description:
         "Via de prachtige Col de la Cayolle. Mogelijk optie om de Col de la Bonette (2860m, hoogste verharde bergpas in de Alpen) te rijden.",
@@ -202,8 +202,8 @@ export const tripData: Day[] = [
       evCharging: false,
     },
     ride: {
-      distance: 138,
-      elevation: 2050,
+      distance: 107.5,
+      elevation: 2660,
       cols: [{ name: "Col d'Illoire", elevation: 964 }],
       description:
         "Door de spectaculaire Gorges du Verdon, een van de mooiste natuurgebieden van Frankrijk. Route met vele korte klimmetjes.",
@@ -228,8 +228,8 @@ export const tripData: Day[] = [
       evCharging: true,
     },
     ride: {
-      distance: 169,
-      elevation: 3500,
+      distance: 125.4,
+      elevation: 2867,
       cols: [
         { name: "Signal de Lure", elevation: 1826 },
         { name: "Mont Ventoux", elevation: 1912 },
@@ -249,9 +249,18 @@ export const tripData: Day[] = [
 ];
 
 export const tripStats = {
-  totalDistance: 845,
-  totalElevation: 17250,
-  totalDays: 9,
-  cyclingDays: 7,
-  totalCols: 10,
+  totalDistance: tripData.reduce(
+    (sum, day) => sum + (day.ride?.distance || 0),
+    0,
+  ),
+  totalElevation: tripData.reduce(
+    (sum, day) => sum + (day.ride?.elevation || 0),
+    0,
+  ),
+  totalDays: tripData.length,
+  cyclingDays: tripData.filter((day) => !day.isRestDay).length,
+  totalCols: tripData.reduce(
+    (sum, day) => sum + (day.ride?.cols.length || 0),
+    0,
+  ),
 };
