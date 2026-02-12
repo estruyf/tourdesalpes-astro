@@ -1,117 +1,81 @@
-# Website -  Tour des Alpes Yves achterna
+# Tour des Grands Cols Alpes 2026 - Project Plan
+## 1. Project Overview
 
-Source: https://2wieligpaard.blogspot.com/2021/10/tour-des-grands-cols-alpes.html?m=1
+A static website built with **Astro** to visualize the cycling tour "Tour des Grands Cols Alpes". The site will serve as a digital itinerary and information hub for the trip in September 2026.
 
-## Dates
+### Tech Stack
+- **Framework**: Astro
+- **Styling**: Tailwind CSS (v4)
+- **Maps**: Leaflet + leaflet-gpx
+- **Deployment**: TBD (Vercel/Netlify/GitHub Pages)
 
-- 2026-09-07: We vertrekken naar Albertville
-- Follow the schema from the source site
-- 2026-09-15: Malaucène verlaten en terug naar huis
+### Structure
+```
+src/
+    components/
+        DayCard.astro       # Specific card for each day's summary
+        InteractiveMap.astro # Map component using Leaflet
+        Timeline.astro      # Vertical timeline of the trip
+    data/
+        trip.ts             # Single source of truth for itinerary data
+    layouts/
+        BaseLayout.astro    # Common layout
+    pages/
+        index.astro         # Main dashboard
+    styles/
+        global.css          # Tailwind imports & custom styles
+```
 
-## Hotels
+## 2. Itinerary & Route Details
 
-### 2026-09-07: Albertville
+Based on `src/data/trip.ts`:
 
-Ibis Styles Albertville
-Address: 23 Av. des Chasseurs Alpins, 73200 Albertville, France
-Phone: +33 4 86 80 29 70
-Website: https://all.accor.com/lien_externe.svlt
+| Day | Date | Route / Activity | Stats | Hotel |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | Mon 07 Sep | **Vertrek naar Albertville** <br> (Arrival) | - | **Ibis Styles Albertville** <br> 23 Av. des Chasseurs Alpins, Albertville <br> *EV Charging: Yes* |
+| **2** | Tue 08 Sep | **Albertville → Val-d'Isère** <br> Col de l'Iseran (2764m) | 92km <br> 2780m+ | **Avancher Hôtel** <br> 554 Av. du Prariond, Val-d'Isère <br> *EV Charging: Yes* |
+| **3** | Wed 09 Sep | **Val-d'Isère → Saint Michel de Maurienne** <br> Mont Cenis (2083m) | 95km <br> 2200m+ | **Savoy Hotel** <br> 25 rue du Général Ferrier, St Michel de Maurienne <br> *EV Charging: No* |
+| **4** | Thu 10 Sep | **Saint Michel → Briançon** <br> Col du Télégraphe (1566m), Col du Galibier (2645m) | 129km <br> 2400m+ | **Hotel Suite-Home Serre-Chevalier** <br> Briançon <br> *EV Charging: No* |
+| **5** | Fri 11 Sep | **Briançon → Barcelonnette** <br> Col d'Izoard (2360m), Col de Vars (2109m) | 92km <br> 2370m+ | **Azteca Hotel** <br> Barcelonnette <br> *EV Charging: No* |
+| **6** | Sat 12 Sep | **Barcelonnette → Saint-André-les-Alpes** <br> Col de la Cayolle (2326m) | 130km <br> 1950m+ | **Hotel Le Bel Air** <br> Saint-André-les-Alpes <br> *EV Charging: Yes* |
+| **7** | Sun 13 Sep | **Saint-André → Forcalquier** <br> Gorges du Verdon, Col d'Illoire (964m) | 138km <br> 2050m+ | **Grand Hotel Forcalquier** <br> Forcalquier <br> *EV Charging: No* |
+| **8** | Mon 14 Sep | **Forcalquier → Malaucène** <br> Mont Ventoux (1912m), Signal de Lure (1826m) | 169km <br> 3500m+ | **Ventoux Ride** <br> Malaucène <br> *EV Charging: Yes (village)* |
+| **9** | Tue 15 Sep | **Terugreis naar huis** <br> (Departure) | - | - |
 
-Booking:
-- 2 x tweepersoonskamers met dubbelbed
-- 1 x tweepersoonskamer met twee aparte bedden
-- 2 x eenpersoonskamers
+**Total Stats**: ~845km distance, ~17,250m elevation gain.
 
-Elektrisch laden mogelijk bij het hotel.
+## 3. Implementation Plan
 
-### 2026-09-08: Val-d'Isère
+### Phase 1: Setup & Data Structure
+- [x] Create Astro project
+- [x] Configure Tailwind CSS
+- [x] Define TypeScript interfaces for `Trip`, `Day`, `Hotel`, `Ride`
+- [x] Populate `src/data/trip.ts` with full itinerary
 
-Avancher Hôtel
-Address: 554 Av. du Prariond, 73150 Val-d'Isère, France
-Phone: +33 4 79 06 02 00
-Website: http://www.hotel-avancher-valdisere.com/
+### Phase 2: Core Components
+- [ ] **InteractiveMap**:
+    - Integrate Leaflet.js
+    - Implement parse/display of GPX files
+    - Add markers for start/end points of each day
+- [ ] **DayCard**:
+    - Display day number, date, and title
+    - Show ride stats (km, elevation)
+    - List Cols/Passes
+    - Show Hotel info with links
+- [ ] **Timeline**:
+    - Vertical list of DayCards
+    - Responsive layout (stack on mobile, timeline on desktop)
 
-Booking:
-- 1 x tweepersoonskamer met dubbelbed
-- 1 x junior suite voor 3 personen
-- 1 x familiekamer voor 3 personen
+### Phase 3: Assets & Styling
+- [ ] Add GPX files to `public/gpx`
+- [ ] Apply "Tour des Grands Cols" branding (colors, fonts)
+- [ ] Responsive testing
 
-Elektrisch laden mogelijk bij het hotel.
+### Phase 4: Deployment
+- [ ] Build production version (`npm run build`)
+- [ ] Deploy to hosting provider
 
-### 2026-09-09: Saint Michel de Maurienne
-
-Savoy Hotel
-Address: 25 rue du Général Ferrier, 73140 Saint Michel de Maurienne, France
-Phone: +33 4 79 56 55 12
-Website: https://www.savoyhotel.fr/
-
-Booking:
-- 3 x tweepersoonskamers
-- 2 x eenpersoonskamers
-
-Elektrisch laden niet vermeld op de website.
-
-### 2026-09-10: Briançon
-
-Hotel Suite-Home Serre-Chevalier 
-Address: Centre commercial Grande Boucle, Avenue du Dauphiné, 05100 Briançon, France
-Phone: +33 4 92 20 02 00
-Website: http://www.suitehome-briancon.com/
-
-Booking:
-- 3 x tweepersoonskamers
-- 2 x eenpersoonskamers
-
-Elektrisch laden niet vermeld op de website.
-
-### 2026-09-11: Barcelonnette
-
-Azteca Hotel
-Address: 3 rue François Arnaud, 04400 Barcelonnette
-Phone: +33 4 92 81 46 36
-Website: https://www.azteca-hotel.fr/
-
-Booking:
-- 3 x tweepersoonskamers
-- 2 x eenpersoonskamers
-
-Elektrisch laden niet vermeld op de website.
-
-### 2026-09-12: Saint-André-les-Alpes
-
-Hotel Le Bel Air
-Address: Route de Nice 04170, Saint-André-les-Alpes
-Phone: +33 4 92 89 17 91
-Website: https://hotel-belair.com/
-
-Booking:
-- 1 x eenpersoonskamer
-- 3 x tweepersoonskamers
-- 1 x tweepersoonskamer met twee aparte bedden
-
-Elektrisch laden mogelijk bij het hotel.
-
-### 2026-09-13: Forcalquier
-
-Grand Hotel Forcalquier
-Address: 10 bd Latourette, 04300 Forcalquier, France
-Phone: +33 4 92 75 00 35
-Website: https://www.grandhotel-forcalquier.fr/
-
-Booking:
-- 2 x tweepersoonskamers
-- 1 x tweepersoonskamer met twee aparte bedden
-- 2 x eenpersoonskamers
-
-Elektrisch laden niet vermeld op de website.
-
-### 2026-09-14: Malaucène
-
-Ventoux Ride
-Address: Route de Beaumont 4, 84340 Malaucène
-
-Booking:
-- 1 appartement met 2 slaapkamers
-- 1 appartement met 3 slaapkamers
-
-Elektrisch laden mogelijk in het dorp.
+## 4. Notes & Resources
+- **Source**: [https://2wieligpaard.blogspot.com/2021/10/tour-des-grands-cols-alpes.html](https://2wieligpaard.blogspot.com/2021/10/tour-des-grands-cols-alpes.html)
+- **GPX Files**: Located in `public/gpx/`
+- **Accommodations**: Most confirmed, check specific room configs in `trip.ts`.

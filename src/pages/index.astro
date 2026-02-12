@@ -1,0 +1,124 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Timeline from "../components/Timeline.astro";
+import { tripStats } from "../data/trip";
+---
+
+<BaseLayout title="Tour des Alpes Yves achterna">
+  <!-- Minimal Hero -->
+  <section class="relative bg-navy-900 text-white pt-24 pb-32 overflow-hidden">
+    {/* Abstract Background Shapes */}
+    <div class="absolute inset-0 overflow-hidden">
+      <div
+        class="absolute -top-1/2 -right-1/2 w-max-7xl rounded-full bg-gradient-to-tr from-turquoise-900/40 to-transparent blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute -bottom-1/2 -left-1/2 w-max-7xl rounded-full bg-gradient-to-tr from-navy-800 to-transparent blur-3xl"
+      >
+      </div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto">
+      <div class="text-center mx-auto space-y-8">
+        {/* Date Pill */}
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
+        >
+          <div class="w-1.5 h-1.5 rounded-full bg-turquoise-400 animate-pulse">
+          </div>
+          <span class="text-xs font-medium text-turquoise-100 tracking-wide">
+            7-15 September 2026
+          </span>
+        </div>
+
+        <h1
+          class="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter leading-[0.9]"
+        >
+          Tour des
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400"
+            >Alpes</span
+          >
+          <span
+            class="block text-2xl sm:text-3xl font-normal text-turquoise-400 mt-4 tracking-wide font-sans"
+          >
+            Yves achterna
+          </span>
+        </h1>
+
+        {/* Stats Strip */}
+        <div
+          class="grid grid-cols-3 divide-x divide-white/10 border-t border-b border-white/10 py-6 mt-12 bg-white/5 backdrop-blur-sm rounded-2xl"
+        >
+          <div class="px-4 text-center">
+            <div class="text-3xl sm:text-4xl font-black text-white">
+              {tripStats.totalDistance}
+            </div>
+            <div
+              class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-1"
+            >
+              Totale afstand
+            </div>
+          </div>
+          <div class="px-4 text-center">
+            <div class="text-3xl sm:text-4xl font-black text-white">
+              {tripStats.totalElevation.toLocaleString("nl-NL")}
+            </div>
+            <div
+              class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-1"
+            >
+              Hoogtemeters
+            </div>
+          </div>
+          <div class="px-4 text-center">
+            <div class="text-3xl sm:text-4xl font-black text-white">
+              {tripStats.totalCols}
+            </div>
+            <div
+              class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-1"
+            >
+              Alpen Cols
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Route Section -->
+  <section
+    class="bg-gray-50/50 min-h-screen -mt-12 relative z-10 rounded-t-[2.5rem] border-t border-white/50 shadow-[0_-20px_40px_-15px_rgba(0,0,0,0.1)]"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between mb-16 gap-8"
+      >
+        <div class="text-left">
+          <h2 class="text-4xl font-black text-navy-900 tracking-tight mb-2">
+            De Route
+          </h2>
+          <p class="text-gray-500 text-lg max-w-xl">
+            Van Albertville naar de top van de Mont Ventoux.
+          </p>
+        </div>
+
+        {/* Legend / Key or just decoration */}
+        <div class="flex gap-6 text-sm text-gray-400 font-medium">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-navy-900"></span>
+            <span>Rit</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span
+              class="w-3 h-3 rounded-full bg-gray-200 border border-gray-300 border-dashed"
+            ></span>
+            <span>Rustdag</span>
+          </div>
+        </div>
+      </div>
+
+      <Timeline />
+    </div>
+  </section>
+</BaseLayout>

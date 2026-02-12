@@ -1,0 +1,14 @@
+---
+import { tripData } from "../data/trip";
+import DayCard from "./DayCard.astro";
+---
+
+<div class="space-y-8 lg:space-y-16 relative">
+  {/* Abstract connection line - optional, can be removed for cleaner look */}
+  <div
+    class="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent hidden lg:block -z-10"
+  >
+  </div>
+
+  {tripData.map((day) => <DayCard day={day} />)}
+</div>

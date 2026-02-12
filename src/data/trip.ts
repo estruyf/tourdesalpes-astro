@@ -1,0 +1,257 @@
+export interface Hotel {
+  name: string;
+  address: string;
+  phone: string;
+  website?: string;
+  rooms: string[];
+  evCharging: boolean;
+}
+
+export interface Col {
+  name: string;
+  elevation: number;
+}
+
+export interface Ride {
+  distance?: number;
+  elevation?: number;
+  cols: Col[];
+  description: string;
+  gpxFile?: string;
+  gpxFileShort?: string; // For routes with kort/lang options
+}
+
+export interface Day {
+  date: string;
+  dayNumber: number;
+  title: string;
+  location: string;
+  hotel?: Hotel;
+  ride?: Ride;
+  isRestDay: boolean;
+}
+
+export const tripData: Day[] = [
+  {
+    date: "2026-09-07",
+    dayNumber: 1,
+    title: "Vertrek naar Albertville",
+    location: "Albertville",
+    isRestDay: true,
+    hotel: {
+      name: "Ibis Styles Albertville",
+      address: "23 Av. des Chasseurs Alpins, 73200 Albertville, France",
+      phone: "+33 4 86 80 29 70",
+      website: "https://all.accor.com",
+      rooms: [
+        "2 x tweepersoonskamers met dubbelbed",
+        "1 x tweepersoonskamer met twee aparte bedden",
+        "2 x eenpersoonskamers",
+      ],
+      evCharging: true,
+    },
+  },
+  {
+    date: "2026-09-08",
+    dayNumber: 2,
+    title: "Albertville → Val-d'Isère",
+    location: "Val-d'Isère",
+    isRestDay: false,
+    hotel: {
+      name: "Avancher Hôtel",
+      address: "554 Av. du Prariond, 73150 Val-d'Isère, France",
+      phone: "+33 4 79 06 02 00",
+      website: "http://www.hotel-avancher-valdisere.com/",
+      rooms: [
+        "1 x tweepersoonskamer met dubbelbed",
+        "1 x junior suite voor 3 personen",
+        "1 x familiekamer voor 3 personen",
+      ],
+      evCharging: true,
+    },
+    ride: {
+      distance: 92,
+      elevation: 2780,
+      cols: [{ name: "Col de l'Iseran", elevation: 2764 }],
+      description:
+        "De hoogste bergpas in de Alpen! Een spectaculaire klim naar de Col de l'Iseran op 2764m. Dit is de kroon op de eerste echte klimdag.",
+      gpxFile: "/gpx/TDGC_2026-09-08.gpx",
+    },
+  },
+  {
+    date: "2026-09-09",
+    dayNumber: 3,
+    title: "Val-d'Isère → Saint Michel de Maurienne",
+    location: "Saint Michel de Maurienne",
+    isRestDay: false,
+    hotel: {
+      name: "Savoy Hotel",
+      address:
+        "25 rue du Général Ferrier, 73140 Saint Michel de Maurienne, France",
+      phone: "+33 4 79 56 55 12",
+      website: "https://www.savoyhotel.fr/",
+      rooms: ["3 x tweepersoonskamers", "2 x eenpersoonskamers"],
+      evCharging: false,
+    },
+    ride: {
+      distance: 95,
+      elevation: 2200,
+      cols: [{ name: "Mont Cenis", elevation: 2083 }],
+      description:
+        "Via Mont Cenis richting Saint Michel de Maurienne. Een prachtige route door het grensgebied met Italië.",
+      gpxFile: "/gpx/TDGC_2026-09-09.gpx",
+    },
+  },
+  {
+    date: "2026-09-10",
+    dayNumber: 4,
+    title: "Saint Michel → Briançon",
+    location: "Briançon",
+    isRestDay: false,
+    hotel: {
+      name: "Hotel Suite-Home Serre-Chevalier",
+      address:
+        "Centre commercial Grande Boucle, Avenue du Dauphiné, 05100 Briançon, France",
+      phone: "+33 4 92 20 02 00",
+      website: "http://www.suitehome-briancon.com/",
+      rooms: ["3 x tweepersoonskamers", "2 x eenpersoonskamers"],
+      evCharging: false,
+    },
+    ride: {
+      distance: 129,
+      elevation: 2400,
+      cols: [
+        { name: "Col du Télégraphe", elevation: 1566 },
+        { name: "Col du Galibier", elevation: 2645 },
+      ],
+      description:
+        "De legendarische Galibier! Via Col du Télégraphe naar de mythische Col du Galibier, een van de meest iconische cols uit de Tour de France.",
+      gpxFile: "/gpx/TDGC_2026-09-10.gpx",
+    },
+  },
+  {
+    date: "2026-09-11",
+    dayNumber: 5,
+    title: "Briançon → Barcelonnette",
+    location: "Barcelonnette",
+    isRestDay: false,
+    hotel: {
+      name: "Azteca Hotel",
+      address: "3 rue François Arnaud, 04400 Barcelonnette",
+      phone: "+33 4 92 81 46 36",
+      website: "https://www.azteca-hotel.fr/",
+      rooms: ["3 x tweepersoonskamers", "2 x eenpersoonskamers"],
+      evCharging: false,
+    },
+    ride: {
+      distance: 92,
+      elevation: 2370,
+      cols: [
+        { name: "Col d'Izoard", elevation: 2360 },
+        { name: "Col de Vars", elevation: 2109 },
+      ],
+      description:
+        "De spectaculaire Col d'Izoard met zijn Casse Déserte, gevolgd door de Col de Vars. Twee prachtige cols op één dag.",
+      gpxFile: "/gpx/TDGC_2026-09-11-lang.gpx",
+      gpxFileShort: "/gpx/TDGC_2026-09-11-kort.gpx",
+    },
+  },
+  {
+    date: "2026-09-12",
+    dayNumber: 6,
+    title: "Barcelonnette → Saint-André-les-Alpes",
+    location: "Saint-André-les-Alpes",
+    isRestDay: false,
+    hotel: {
+      name: "Hotel Le Bel Air",
+      address: "Route de Nice 04170, Saint-André-les-Alpes",
+      phone: "+33 4 92 89 17 91",
+      website: "https://hotel-belair.com/",
+      rooms: [
+        "1 x eenpersoonskamer",
+        "3 x tweepersoonskamers",
+        "1 x tweepersoonskamer met twee aparte bedden",
+      ],
+      evCharging: true,
+    },
+    ride: {
+      distance: 130,
+      elevation: 1950,
+      cols: [{ name: "Col de la Cayolle", elevation: 2326 }],
+      description:
+        "Via de prachtige Col de la Cayolle. Mogelijk optie om de Col de la Bonette (2860m, hoogste verharde bergpas in de Alpen) te rijden.",
+      gpxFile: "/gpx/TDGC_2026-09-12.gpx",
+    },
+  },
+  {
+    date: "2026-09-13",
+    dayNumber: 7,
+    title: "Saint-André → Forcalquier",
+    location: "Forcalquier",
+    isRestDay: false,
+    hotel: {
+      name: "Grand Hotel Forcalquier",
+      address: "10 bd Latourette, 04300 Forcalquier, France",
+      phone: "+33 4 92 75 00 35",
+      website: "https://www.grandhotel-forcalquier.fr/",
+      rooms: [
+        "2 x tweepersoonskamers",
+        "1 x tweepersoonskamer met twee aparte bedden",
+        "2 x eenpersoonskamers",
+      ],
+      evCharging: false,
+    },
+    ride: {
+      distance: 138,
+      elevation: 2050,
+      cols: [{ name: "Col d'Illoire", elevation: 964 }],
+      description:
+        "Door de spectaculaire Gorges du Verdon, een van de mooiste natuurgebieden van Frankrijk. Route met vele korte klimmetjes.",
+      gpxFile: "/gpx/TDGC_2026-09-13.gpx",
+      gpxFileShort: "/gpx/TDGC_2026-09-13-kort.gpx",
+    },
+  },
+  {
+    date: "2026-09-14",
+    dayNumber: 8,
+    title: "Forcalquier → Malaucène",
+    location: "Malaucène",
+    isRestDay: false,
+    hotel: {
+      name: "Ventoux Ride",
+      address: "Route de Beaumont 4, 84340 Malaucène",
+      phone: "",
+      rooms: [
+        "1 appartement met 2 slaapkamers",
+        "1 appartement met 3 slaapkamers",
+      ],
+      evCharging: true,
+    },
+    ride: {
+      distance: 169,
+      elevation: 3500,
+      cols: [
+        { name: "Signal de Lure", elevation: 1826 },
+        { name: "Mont Ventoux", elevation: 1912 },
+      ],
+      description:
+        "De finale! Via Signal de Lure naar de legendarische Mont Ventoux. De Reus van de Provence als apotheose van de week.",
+      gpxFile: "/gpx/TDGC_2026-09-14.gpx",
+    },
+  },
+  {
+    date: "2026-09-15",
+    dayNumber: 9,
+    title: "Terugreis naar huis",
+    location: "Malaucène",
+    isRestDay: true,
+  },
+];
+
+export const tripStats = {
+  totalDistance: 845,
+  totalElevation: 17250,
+  totalDays: 9,
+  cyclingDays: 7,
+  totalCols: 10,
+};

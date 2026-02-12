@@ -1,0 +1,206 @@
+---
+interface Props {
+  gpxFile: string;
+  gpxFileShort?: string;
+  dayNumber: number;
+  title: string;
+}
+
+const { gpxFile, gpxFileShort, dayNumber, title } = Astro.props;
+const mapId = `map-${dayNumber}`;
+---
+
+<div class="map-container mt-4">
+  {
+    gpxFileShort && (
+      <div class="flex gap-2 mb-3">
+        <button
+          class="route-selector flex-1 px-3 py-2 text-sm font-medium rounded bg-turquoise-500 text-white"
+          data-route="long"
+          data-map-id={mapId}
+          data-gpx-long={gpxFile}
+          data-gpx-short={gpxFileShort}
+        >
+          Lange route
+        </button>
+        <button
+          class="route-selector flex-1 px-3 py-2 text-sm font-medium rounded bg-gray-200 text-gray-700"
+          data-route="short"
+          data-map-id={mapId}
+          data-gpx-long={gpxFile}
+          data-gpx-short={gpxFileShort}
+        >
+          Korte route
+        </button>
+      </div>
+    )
+  }
+
+  <div
+    id={mapId}
+    class="h-80 rounded-lg shadow-inner border border-gray-200"
+    data-gpx={gpxFile}
+  >
+  </div>
+
+  <p class="text-xs text-gray-500 mt-2 text-center">
+    Klik op de kaart om te vergroten • {title}
+  </p>
+</div>
+
+<script>
+  // This script runs on the client side after the page loads
+  if (typeof window !== "undefined") {
+    // Wait for Leaflet to be available
+    const initMaps = () => {
+      if (typeof L === "undefined") {
+        setTimeout(initMaps, 100);
+        return;
+      }
+
+      const mapElements = document.querySelectorAll('[id^="map-"]');
+      const mapInstances: { [key: string]: any } = {};
+      const routeLayers: { [key: string]: any } = {};
+
+      mapElements.forEach((mapElement) => {
+        const id = mapElement.id;
+        const gpxFile = mapElement.getAttribute("data-gpx");
+
+        if (!gpxFile) return;
+
+        // Initialize the map
+        const map = L.map(id, {
+          scrollWheelZoom: false,
+        }).setView([44.5, 6.5], 9);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: "© OpenStreetMap contributors",
+          maxZoom: 19,
+        }).addTo(map);
+
+        mapInstances[id] = map;
+
+        // Function to load GPX
+        const loadGPX = (gpxPath: string) => {
+          // Remove existing route layer if any
+          if (routeLayers[id]) {
+            map.removeLayer(routeLayers[id]);
+          }
+
+          fetch(gpxPath)
+            .then((response) => response.text())
+            .then((gpxData) => {
+              const parser = new DOMParser();
+              const gpxDoc = parser.parseFromString(gpxData, "text/xml");
+              const trackPoints = gpxDoc.querySelectorAll("trkpt");
+
+              const latLngs: [number, number][] = [];
+              trackPoints.forEach((point) => {
+                const lat = parseFloat(point.getAttribute("lat") || "0");
+                const lon = parseFloat(point.getAttribute("lon") || "0");
+                latLngs.push([lat, lon]);
+              });
+
+              if (latLngs.length > 0) {
+                // Create polyline
+                const polyline = L.polyline(latLngs, {
+                  color: "#ef4444",
+                  weight: 4,
+                  opacity: 0.8,
+                }).addTo(map);
+
+                routeLayers[id] = polyline;
+
+                // Add start marker
+                const startMarker = L.marker(latLngs[0], {
+                  icon: L.divIcon({
+                    className: "custom-marker",
+                    html: '<div style="background: #10b981; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">S</div>',
+                    iconSize: [30, 30],
+                  }),
+                }).addTo(map);
+
+                // Add end marker
+                const endMarker = L.marker(latLngs[latLngs.length - 1], {
+                  icon: L.divIcon({
+                    className: "custom-marker",
+                    html: '<div style="background: #ef4444; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">F</div>',
+                    iconSize: [30, 30],
+                  }),
+                }).addTo(map);
+
+                // Fit bounds to show entire route
+                map.fitBounds(polyline.getBounds(), { padding: [20, 20] });
+              }
+            })
+            .catch((error) => {
+              console.error("Error loading GPX:", error);
+              mapElement.innerHTML =
+                '<div class="flex items-center justify-center h-full text-red-600">Error loading route</div>';
+            });
+        };
+
+        // Load initial GPX
+        loadGPX(gpxFile);
+
+        // Handle route selection buttons
+        const routeButtons = document.querySelectorAll(`[data-map-id="${id}"]`);
+        routeButtons.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            const target = e.target as HTMLButtonElement;
+            const route = target.getAttribute("data-route");
+            const gpxLong = target.getAttribute("data-gpx-long");
+            const gpxShort = target.getAttribute("data-gpx-short");
+
+            // Update button styles
+            routeButtons.forEach((btn) => {
+              btn.classList.remove("bg-turquoise-500", "text-white");
+              btn.classList.add("bg-gray-200", "text-gray-700");
+            });
+            target.classList.remove("bg-gray-200", "text-gray-700");
+            target.classList.add("bg-turquoise-500", "text-white");
+
+            // Load appropriate GPX
+            const gpxToLoad = route === "long" ? gpxLong : gpxShort;
+            if (gpxToLoad) {
+              loadGPX(gpxToLoad);
+            }
+          });
+        });
+
+        // Enable scroll zoom on click
+        map.on("click", () => {
+          map.scrollWheelZoom.enable();
+        });
+
+        // Disable scroll zoom when mouse leaves
+        map.on("mouseout", () => {
+          map.scrollWheelZoom.disable();
+        });
+      });
+    };
+
+    // Start initialization
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initMaps);
+    } else {
+      initMaps();
+    }
+  }
+</script>
+
+<style>
+  .map-container {
+    position: relative;
+  }
+
+  .route-selector {
+    transition: all 0.2s ease;
+  }
+
+  .route-selector:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+</style>
