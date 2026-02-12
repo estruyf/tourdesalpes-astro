@@ -5,17 +5,30 @@ Een one-page timeline website voor onze wielrenreis door de Franse Alpen in Sept
 ## 🚴 Over de trip
 
 - **Datum**: 7-15 September 2026
-- **Route**: Albertville → Malaucène
-- **Afstand**: ~831 km
-- **Hoogtemeters**: ~17,650m
-- **Cols**: 11 legendarische bergpassen
+- **Duur**: 9 dagen (8 rijdagen + 2 reisdagen)
+- **Route**: Albertville → Mont Ventoux (Malaucène)
+- **Afstand**: ~765 km
+- **Hoogtemeters**: ~22,435 m
+- **Cols**: 10 legendarische bergpassen
+
+### Etappes
+
+1. **Dag 1** (7 sept) - Reisdag naar Albertville
+2. **Dag 2** (8 sept) - Albertville → Val-d'Isère (91 km, 3138 m, Col de l'Iseran 2764m)
+3. **Dag 3** (9 sept) - Val-d'Isère → Saint Michel (113 km, 2085 m, Mont Cenis 2083m)
+4. **Dag 4** (10 sept) - Saint Michel → Briançon (93 km, 3173 m, Galibier 2645m)
+5. **Dag 5** (11 sept) - Briançon → Barcelonnette (92 km, 2370 m, Izoard 2360m + Vars 2109m)
+6. **Dag 6** (12 sept) - Barcelonnette → Saint-André (143 km, 4141 m, Cayolle 2326m)
+7. **Dag 7** (13 sept) - Saint-André → Forcalquier (108 km, 2660 m, Illoire 964m)
+8. **Dag 8** (14 sept) - Forcalquier → Malaucène (125 km, 2867 m, Signal de Lure 1826m + Mont Ventoux 1912m)
+9. **Dag 9** (15 sept) - Terugreis naar huis
 
 ### Hoogtepunten
 
-- Col de l'Iseran (2764m) - Hoogste col in de Alpen
-- Col du Galibier (2645m) - Tour de France legende
-- Col d'Izoard (2360m) - Met de legendarische Casse Déserte
-- Mont Ventoux (1912m) - De Reus van de Provence als finale
+- **Col de l'Iseran** (2764m) - Hoogste verharde bergpas in de Alpen
+- **Col du Galibier** (2645m) - Tour de France legende
+- **Col d'Izoard** (2360m) - Met de legendarische Casse Déserte
+- **Mont Ventoux** (1912m) - De Reus van de Provence als apotheose van de week
 
 ## 🛠️ Technische Stack
 
@@ -90,13 +103,15 @@ npm run preview
 ## 🗺️ GPX Bestanden
 
 Alle GPX routes zijn opgeslagen in `public/gpx/` met de naamgeving:
-- `TDGC_2026-09-08.gpx` - Albertville → Val-d'Isère
-- `TDGC_2026-09-09.gpx` - Val-d'Isère → Saint Michel
-- `TDGC_2026-09-10.gpx` - Saint Michel → Briançon
-- `TDGC_2026-09-11-lang.gpx` / `kort.gpx` - Briançon → Barcelonnette
-- `TDGC_2026-09-12.gpx` - Barcelonnette → Saint-André
-- `TDGC_2026-09-13.gpx` / `kort.gpx` - Saint-André → Forcalquier
-- `TDGC_2026-09-14.gpx` - Forcalquier → Malaucène
+- `TDGC_2026-09-08.gpx` - Albertville → Val-d'Isère (Col de l'Iseran)
+- `TDGC_2026-09-09.gpx` - Val-d'Isère → Saint Michel de Maurienne (Mont Cenis)
+- `TDGC_2026-09-10.gpx` - Saint Michel → Briançon (Col du Télégraphe & Galibier)
+- `TDGC_2026-09-11-lang.gpx` - Briançon → Barcelonnette (lange route)
+- `TDGC_2026-09-11-kort.gpx` - Briançon → Barcelonnette (korte route)
+- `TDGC_2026-09-12.gpx` - Barcelonnette → Saint-André-les-Alpes (Col de la Cayolle)
+- `TDGC_2026-09-13.gpx` - Saint-André → Forcalquier (Gorges du Verdon - lange route)
+- `TDGC_2026-09-13-kort.gpx` - Saint-André → Forcalquier (korte route)
+- `TDGC_2026-09-14.gpx` - Forcalquier → Malaucène (Signal de Lure & Mont Ventoux finale)
 
 ## ✨ Features
 
@@ -125,27 +140,9 @@ In `src/data/trip.ts`, pas de `ride.description` velden aan.
 2. Kopieer naar `public/gpx/`
 3. Update referenties in `src/data/trip.ts` indien nodig
 
-## 🌐 Deployment
-
-Het project kan gedeployed worden naar:
-- **Vercel**: `npx vercel`
-- **Netlify**: Drag & drop `dist/` folder
-- **GitHub Pages**: Via GitHub Actions
-- **Cloudflare Pages**: Connect repository
-
-### Aanbevolen: Vercel
-
-```bash
-npm run build
-npx vercel --prod
-```
-
 ## 📚 Bronnen
 
 - Gebaseerd op de route van [Harold Slegers](https://2wieligpaard.blogspot.com/2021/10/tour-des-grands-cols-alpes.html)
-- [Astro Documentatie](https://docs.astro.build)
-- [Tailwind CSS v4](https://tailwindcss.com/docs)
-- [Leaflet.js](https://leafletjs.com/)
 
 ## 💪 Team Motto
 
