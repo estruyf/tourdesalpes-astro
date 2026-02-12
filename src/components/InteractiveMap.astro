@@ -11,9 +11,15 @@ const mapId = `map-${dayNumber}`;
 ---
 
 <div class="map-container h-full flex flex-col">
+  <div
+    id={mapId}
+    class="flex-1 rounded-r-lg shadow-inner border border-gray-200"
+    data-gpx={gpxFile}
+  >
+  </div>
   {
     gpxFileShort && (
-      <div class="flex gap-2 mb-3">
+      <div class="flex gap-2 mt-3 px-4">
         <button
           class="route-selector flex-1 px-3 py-2 text-sm font-medium rounded bg-turquoise-500 text-white"
           data-route="long"
@@ -35,13 +41,6 @@ const mapId = `map-${dayNumber}`;
       </div>
     )
   }
-
-  <div
-    id={mapId}
-    class="flex-1 rounded-lg shadow-inner border border-gray-200"
-    data-gpx={gpxFile}
-  >
-  </div>
 
   <p class="text-xs text-gray-500 mt-2 text-center">
     Klik op de kaart om te vergroten • {title}
