@@ -21,6 +21,12 @@ export interface Ride {
   gpxFileShort?: string; // For routes with kort/lang options
 }
 
+export interface Town {
+  name: string;
+  lat: number;
+  lon: number;
+}
+
 export interface Day {
   date: string;
   dayNumber: number;
@@ -264,3 +270,18 @@ export const tripStats = {
     0,
   ),
 };
+
+export const routeGpxFiles = tripData
+  .map((day) => day.ride?.gpxFile)
+  .filter((gpxFile): gpxFile is string => Boolean(gpxFile));
+
+export const routeTowns: Town[] = [
+  { name: "Albertville", lat: 45.675, lon: 6.392 },
+  { name: "Val-d'Isere", lat: 45.448, lon: 6.979 },
+  { name: "Saint-Michel-de-Maurienne", lat: 45.218, lon: 6.473 },
+  { name: "Briançon", lat: 44.899, lon: 6.643 },
+  { name: "Barcelonnette", lat: 44.387, lon: 6.651 },
+  { name: "Saint-Andre-les-Alpes", lat: 43.967, lon: 6.514 },
+  { name: "Forcalquier", lat: 43.959, lon: 5.779 },
+  { name: "Malaucene", lat: 44.175, lon: 5.133 },
+];
