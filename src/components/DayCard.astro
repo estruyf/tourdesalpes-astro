@@ -18,7 +18,7 @@ const { day } = Astro.props;
   >
   </div>
 
-  <div class="grid lg:grid-cols-12 gap-0">
+  <div class="grid lg:grid-cols-12 gap-0 h-full">
     {/* Content Side */}
     <div class="lg:col-span-5 p-8 flex flex-col h-full bg-white relative z-10">
       <header class="mb-6 relative">
@@ -75,13 +75,44 @@ const { day } = Astro.props;
 
       {
         day.ride ? (
-          <div class="prose prose-sm prose-navy text-gray-500 mb-8 leading-relaxed max-w-none">
+          <div class="prose prose-sm prose-navy text-gray-500 mb-4 leading-relaxed max-w-none">
             <p>{day.ride.description}</p>
           </div>
         ) : (
           <div class="flex-grow flex flex-col items-center justify-center p-8 text-center bg-gray-50/50 rounded-2xl border border-dashed border-gray-200 my-4">
             <p class="font-medium text-navy-800">Rustdag / Reisdag</p>
             <p class="text-sm text-gray-500 mt-1">Geen rit gepland vandaag.</p>
+          </div>
+        )
+      }
+
+      {/* Hotel Info */}
+      {
+        day.hotel && (
+          <div class="mb-4 bg-navy-50/50 rounded-lg border border-navy-100 overflow-hidden">
+            <div class="px-3 py-2 border-b border-navy-100 flex items-center justify-between gap-3">
+              <span class="text-[10px] font-bold text-navy-400 uppercase tracking-wider">
+                Hotel
+              </span>
+              {day.hotel.evCharging && (
+                <span class="text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">
+                  ⚡ EV
+                </span>
+              )}
+            </div>
+            <div class="p-3">
+              <div class="font-bold text-navy-900 text-sm mb-1">
+                {day.hotel.name}
+              </div>
+              <div class="text-xs text-gray-500 mb-2">{day.hotel.address}</div>
+              <div class="flex flex-wrap gap-1">
+                {day.hotel.rooms.map((room) => (
+                  <span class="text-[10px] bg-white px-1.5 py-0.5 rounded text-gray-600 border border-gray-200">
+                    {room}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         )
       }
@@ -141,7 +172,7 @@ const { day } = Astro.props;
 
     {/* Map Side */}
     <div
-      class="lg:col-span-7 bg-gray-50 relative min-h-[400px] lg:min-h-full border-l border-gray-100"
+      class="lg:col-span-7 bg-gray-50 relative min-h-[400px] lg:h-full border-l border-gray-100"
     >
       {
         day.ride && day.ride.gpxFile ? (
@@ -162,41 +193,7 @@ const { day } = Astro.props;
         )
       }
 
-      {/* Floating Elements on Map */}
-      <div class="absolute top-4 right-4 z-[400]">
-        {
-          day.hotel && (
-            <div class="bg-white/95 backdrop-blur shadow-lg rounded-xl overflow-hidden border border-gray-200/50 max-w-xs transition-transform hover:scale-105">
-              <div class="px-4 py-3 border-b border-gray-100 flex items-center justify-between gap-4">
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                  Hotel
-                </span>
-                {day.hotel.evCharging && (
-                  <span class="text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">
-                    ⚡ EV
-                  </span>
-                )}
-              </div>
-              <div class="p-4">
-                <div class="font-bold text-navy-900 text-sm mb-1">
-                  {day.hotel.name}
-                </div>
-                <div class="text-xs text-gray-500 mb-2">
-                  {day.hotel.address}
-                </div>
-                <div class="flex flex-wrap gap-1">
-                  {day.hotel.rooms.map((room) => (
-                    <span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-600 border border-gray-200">
-                      {room}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )
-        }
-      </div>
-
+      {/* Cols badges on Map */}
       <div class="absolute bottom-4 left-4 right-4 z-[400]">
         {
           day.ride && day.ride.cols && day.ride.cols.length > 0 && (

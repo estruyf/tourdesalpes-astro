@@ -10,7 +10,7 @@ const { gpxFile, gpxFileShort, dayNumber, title } = Astro.props;
 const mapId = `map-${dayNumber}`;
 ---
 
-<div class="map-container mt-4">
+<div class="map-container h-full flex flex-col">
   {
     gpxFileShort && (
       <div class="flex gap-2 mb-3">
@@ -38,7 +38,7 @@ const mapId = `map-${dayNumber}`;
 
   <div
     id={mapId}
-    class="h-80 rounded-lg shadow-inner border border-gray-200"
+    class="flex-1 rounded-lg shadow-inner border border-gray-200"
     data-gpx={gpxFile}
   >
   </div>

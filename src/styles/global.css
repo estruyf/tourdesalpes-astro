@@ -1,32 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  /* Refined Palette for a Cleaner Look */
-  --color-turquoise-50: #f0fdfd;
-  --color-turquoise-100: #ccfbf1;
-  --color-turquoise-200: #99f6e4;
-  --color-turquoise-300: #5eead4;
-  --color-turquoise-400: #2dd4bf;
-  --color-turquoise-500: #14b8a6;
-  --color-turquoise-600: #0d9488;
-  --color-turquoise-700: #0f766e;
-  --color-turquoise-800: #115e59;
-  --color-turquoise-900: #134e4a;
+  /* Jersey-Inspired Color Palette */
+  --color-turquoise-50: #e6fafa;
+  --color-turquoise-100: #b3f1f1;
+  --color-turquoise-200: #80e8e8;
+  --color-turquoise-300: #4ddfdf;
+  --color-turquoise-400: #51c7cc;
+  --color-turquoise-500: #3fb5ba;
+  --color-turquoise-600: #359ba0;
+  --color-turquoise-700: #2b8186;
+  --color-turquoise-800: #21676c;
+  --color-turquoise-900: #174d52;
 
-  --color-navy-50: #f8fafc;
-  --color-navy-100: #f1f5f9;
-  --color-navy-200: #e2e8f0;
-  --color-navy-300: #cbd5e1;
-  --color-navy-400: #94a3b8;
-  --color-navy-500: #64748b;
-  --color-navy-600: #475569;
-  --color-navy-700: #334155;
-  --color-navy-800: #1e293b;
-  --color-navy-900: #0f172a;
+  --color-navy-50: #f0f2f4;
+  --color-navy-100: #d4d9de;
+  --color-navy-200: #a9b3be;
+  --color-navy-300: #7e8d9e;
+  --color-navy-400: #53677e;
+  --color-navy-500: #2c4a5e;
+  --color-navy-600: #253f51;
+  --color-navy-700: #1e3444;
+  --color-navy-800: #172937;
+  --color-navy-900: #101e2a;
 
-  --color-orange-50: #fff7ed;
-  --color-orange-500: #f97316;
-  --color-orange-600: #ea580c;
+  --color-orange-50: #fff8ed;
+  --color-orange-100: #ffecd4;
+  --color-orange-200: #ffd8a9;
+  --color-orange-300: #ffc47e;
+  --color-orange-400: #ffb053;
+  --color-orange-500: #f59e0b;
+  --color-orange-600: #f09136;
+  --color-orange-700: #d17a1f;
+  --color-orange-800: #a66318;
+  --color-orange-900: #7b4c11;
 
   --font-family-sans:
     "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -35,16 +42,36 @@
 body {
   font-family: var(--font-family-sans);
   color: var(--color-navy-900);
-  background-color: #f8fafc; /* Lighter background for better contrast */
+  background-color: #f8fafc;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle pattern */
-.bg-grid-pattern {
+/* Checkered pattern inspired by cycling jersey */
+.checkered-pattern {
   background-image:
-    linear-gradient(to right, #e2e8f0 1px, transparent 1px),
-    linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    linear-gradient(45deg, #51c7cc 25%, transparent 25%),
+    linear-gradient(-45deg, #51c7cc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #51c7cc 75%),
+    linear-gradient(-45deg, transparent 75%, #51c7cc 75%);
+  background-size: 30px 30px;
+  background-position:
+    0 0,
+    0 15px,
+    15px -15px,
+    -15px 0px;
+}
+
+.checkered-pattern-subtle {
+  background-image:
+    linear-gradient(45deg, rgba(81, 199, 204, 0.1) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(81, 199, 204, 0.1) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(81, 199, 204, 0.1) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(81, 199, 204, 0.1) 75%);
+  background-size: 30px 30px;
+  background-position:
+    0 0,
+    0 15px,
+    15px -15px,
+    -15px 0px;
 }

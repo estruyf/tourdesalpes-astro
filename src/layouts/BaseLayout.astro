@@ -32,28 +32,47 @@ const {
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body class="bg-gray-50">
+  <body class="bg-white">
     <main>
       <slot />
     </main>
 
-    <footer class="bg-navy-900 text-white mt-0 border-t border-white/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="text-center">
-          <p class="text-sm text-gray-400 font-medium">
+    <footer
+      class="bg-navy-500 text-white mt-0 border-t-8 border-turquoise-400 relative overflow-hidden"
+    >
+      {/* Checkered pattern accent */}
+      <div
+        class="absolute bottom-0 left-0 right-0 h-20 checkered-pattern opacity-10"
+      >
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center space-y-4">
+          <p class="text-sm text-white/90 font-medium">
             Gebaseerd op de route van
             <a
               href="https://2wieligpaard.blogspot.com/2021/10/tour-des-grands-cols-alpes.html"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-turquoise-400 hover:text-turquoise-300 transition-colors"
+              class="text-orange-400 hover:text-orange-300 transition-colors font-bold"
             >
               Harold Slegers
             </a>
           </p>
-          <div class="w-12 h-0.5 bg-white/10 mx-auto my-4"></div>
-          <p class="text-xs text-gray-500 font-mono tracking-wide uppercase">
-            "Suffering is only temporary, giving up lasts forever"
+          <div class="flex items-center justify-center gap-3">
+            <div class="w-8 h-0.5 bg-turquoise-400"></div>
+            <svg
+              class="w-5 h-5 text-orange-500"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"></path>
+            </svg>
+            <div class="w-8 h-0.5 bg-turquoise-400"></div>
+          </div>
+          <p class="text-sm text-white/80 font-black tracking-wide uppercase">
+            Suffering is only temporary<br />
+            <span class="text-orange-400">Giving up lasts forever</span>
           </p>
         </div>
       </div>
