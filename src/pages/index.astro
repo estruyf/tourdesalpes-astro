@@ -7,17 +7,21 @@ import { tripStats } from "../data/trip";
 <BaseLayout title="Tour des Alpes Yves achterna">
   <!-- Jersey-Inspired Hero -->
   <section
-    class="relative bg-turquoise-400 text-navy-900 py-12 overflow-hidden"
+    class="relative bg-gradient-to-br from-turquoise-400 via-turquoise-500 to-navy-600 text-navy-900 py-20 overflow-hidden"
   >
-    {/* Checkered Pattern Accent */}
+    {/* Animated Gradient Orbs */}
     <div
-      class="absolute top-0 left-0 right-0 h-16 checkered-pattern opacity-20"
+      class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-orange-400/30 to-transparent rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute -bottom-20 -left-40 w-96 h-96 bg-gradient-to-tr from-navy-700/40 to-transparent rounded-full blur-3xl"
     >
     </div>
 
-    {/* Navy Shoulder Accent */}
+    {/* Checkered Pattern Accent */}
     <div
-      class="absolute top-0 right-0 w-1/4 h-40 bg-navy-500 rounded-bl-[60px] opacity-30"
+      class="absolute top-0 left-0 right-0 h-16 checkered-pattern opacity-10"
     >
     </div>
 
@@ -26,7 +30,7 @@ import { tripStats } from "../data/trip";
         {/* Logo */}
         <div class="flex justify-center">
           <div
-            class="w-20 h-20 bg-white rounded-full p-4 shadow-xl ring-2 ring-navy-500/20"
+            class="w-20 h-20 bg-gradient-to-br from-white to-white/90 rounded-full p-4 shadow-2xl ring-4 ring-white/30 hover:shadow-orange-500/50 hover:ring-orange-400/50 transition-all duration-300"
           >
             <img
               src="/suffering-kotk.svg"
@@ -38,10 +42,10 @@ import { tripStats } from "../data/trip";
 
         {/* Date Badge */}
         <div
-          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-navy-500 text-white shadow-lg"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-xl hover:shadow-orange-500/50 transition-all duration-300 border border-white/20"
         >
           <svg
-            class="w-3.5 h-3.5 text-orange-500"
+            class="w-3.5 h-3.5 text-yellow-200 animate-pulse"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -53,51 +57,59 @@ import { tripStats } from "../data/trip";
         </div>
 
         {/* Title */}
-        <div class="space-y-1">
+        <div class="space-y-2">
           <h1
-            class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight text-navy-900"
+            class="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-tight bg-gradient-to-r from-navy-900 to-navy-700 bg-clip-text text-transparent drop-shadow-lg"
           >
             Tour des Alpes
           </h1>
-          <p class="text-xl sm:text-2xl font-bold text-navy-700 tracking-wide">
+          <p
+            class="text-xl sm:text-2xl font-bold text-navy-700/90 tracking-wide drop-shadow"
+          >
             Yves achterna
           </p>
         </div>
 
         {/* Stats Grid */}
-        <div class="grid grid-cols-3 gap-4 max-w-3xl mx-auto pt-4">
+        <div class="grid grid-cols-3 gap-4 max-w-3xl mx-auto pt-6">
           <div
-            class="bg-white/80 backdrop-blur rounded-xl p-4 shadow-lg border border-navy-500/20"
+            class="bg-gradient-to-br from-white/95 to-white/80 backdrop-blur rounded-2xl p-4 shadow-xl hover:shadow-2xl hover:from-white to-white/90 transition-all duration-300 border border-white/40 hover:border-orange-300/60 group cursor-pointer"
           >
-            <div class="text-3xl sm:text-4xl font-black text-navy-900">
+            <div
+              class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-navy-900 to-navy-700 bg-clip-text text-transparent group-hover:from-orange-600 group-hover:to-orange-500 transition-all"
+            >
               {tripStats.totalDistance}
             </div>
             <div
-              class="text-[10px] uppercase tracking-widest text-navy-600 font-bold mt-1"
+              class="text-[10px] uppercase tracking-widest text-navy-600 font-bold mt-1 group-hover:text-orange-600 transition-colors"
             >
               Kilometer
             </div>
           </div>
           <div
-            class="bg-white/80 backdrop-blur rounded-xl p-4 shadow-lg border border-navy-500/20"
+            class="bg-gradient-to-br from-white/95 to-white/80 backdrop-blur rounded-2xl p-4 shadow-xl hover:shadow-2xl hover:from-white to-white/90 transition-all duration-300 border border-white/40 hover:border-orange-300/60 group cursor-pointer"
           >
-            <div class="text-3xl sm:text-4xl font-black text-navy-900">
+            <div
+              class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-navy-900 to-navy-700 bg-clip-text text-transparent group-hover:from-orange-600 group-hover:to-orange-500 transition-all"
+            >
               {tripStats.totalElevation.toLocaleString("nl-NL")}
             </div>
             <div
-              class="text-[10px] uppercase tracking-widest text-navy-600 font-bold mt-1"
+              class="text-[10px] uppercase tracking-widest text-navy-600 font-bold mt-1 group-hover:text-orange-600 transition-colors"
             >
               Hoogtemeters
             </div>
           </div>
           <div
-            class="bg-white/80 backdrop-blur rounded-xl p-4 shadow-lg border border-navy-500/20"
+            class="bg-gradient-to-br from-white/95 to-white/80 backdrop-blur rounded-2xl p-4 shadow-xl hover:shadow-2xl hover:from-white to-white/90 transition-all duration-300 border border-white/40 hover:border-orange-300/60 group cursor-pointer"
           >
-            <div class="text-3xl sm:text-4xl font-black text-orange-600">
+            <div
+              class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-amber-400 transition-all"
+            >
               {tripStats.totalCols}
             </div>
             <div
-              class="text-[10px] uppercase tracking-widest text-navy-600 font-bold mt-1"
+              class="text-[10px] uppercase tracking-widest text-navy-600 font-bold mt-1 group-hover:text-orange-600 transition-colors"
             >
               Alpen Cols
             </div>
