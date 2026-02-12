@@ -1,6 +1,6 @@
 {
 	"main": "dist/_worker.js/index.js",
-	"name": "temp-astro",
+	"name": "tourdesalpes-astro",
   "compatibility_date": "2026-02-12",
   "compatibility_flags": [
     "nodejs_compat",
