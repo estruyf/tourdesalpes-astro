@@ -144,8 +144,8 @@ export const tripData: Day[] = [
       evCharging: false,
     },
     ride: {
-      distance: 92,
-      elevation: 2370,
+      distance: 143.2,
+      elevation: 4141,
       cols: [
         { name: "Col d'Izoard", elevation: 2360 },
         { name: "Col de Vars", elevation: 2109 },
@@ -175,8 +175,8 @@ export const tripData: Day[] = [
       evCharging: true,
     },
     ride: {
-      distance: 143.2,
-      elevation: 4141,
+      distance: 107.5,
+      elevation: 2660,
       cols: [{ name: "Col de la Cayolle", elevation: 2326 }],
       description:
         "Via de prachtige Col de la Cayolle. Mogelijk optie om de Col de la Bonette (2860m, hoogste verharde bergpas in de Alpen) te rijden.",
@@ -202,8 +202,8 @@ export const tripData: Day[] = [
       evCharging: false,
     },
     ride: {
-      distance: 107.5,
-      elevation: 2660,
+      distance: 147.2,
+      elevation: 2763,
       cols: [{ name: "Col d'Illoire", elevation: 964 }],
       description:
         "Door de spectaculaire Gorges du Verdon, een van de mooiste natuurgebieden van Frankrijk. Route met vele korte klimmetjes.",

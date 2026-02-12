@@ -7,8 +7,8 @@ Een one-page timeline website voor onze wielrenreis door de Franse Alpen in Sept
 - **Datum**: 7-15 September 2026
 - **Duur**: 9 dagen (8 rijdagen + 2 reisdagen)
 - **Route**: Albertville → Mont Ventoux (Malaucène)
-- **Afstand**: ~765 km
-- **Hoogtemeters**: ~22,435 m
+- **Afstand**: ~820 km
+- **Hoogtemeters**: ~20,827 m
 - **Cols**: 10 legendarische bergpassen
 
 ### Etappes
@@ -16,11 +16,11 @@ Een one-page timeline website voor onze wielrenreis door de Franse Alpen in Sept
 1. **Dag 1** (7 sept) - Reisdag naar Albertville
 2. **Dag 2** (8 sept) - Albertville → Val-d'Isère (91 km, 3138 m, Col de l'Iseran 2764m)
 3. **Dag 3** (9 sept) - Val-d'Isère → Saint Michel (113 km, 2085 m, Mont Cenis 2083m)
-4. **Dag 4** (10 sept) - Saint Michel → Briançon (93 km, 3173 m, Galibier 2645m)
-5. **Dag 5** (11 sept) - Briançon → Barcelonnette (92 km, 2370 m, Izoard 2360m + Vars 2109m)
-6. **Dag 6** (12 sept) - Barcelonnette → Saint-André (143 km, 4141 m, Cayolle 2326m)
-7. **Dag 7** (13 sept) - Saint-André → Forcalquier (108 km, 2660 m, Illoire 964m)
-8. **Dag 8** (14 sept) - Forcalquier → Malaucène (125 km, 2867 m, Signal de Lure 1826m + Mont Ventoux 1912m)
+4. **Dag 4** (10 sept) - Saint Michel → Briançon (92.8 km, 3173 m, Galibier 2645m)
+5. **Dag 5** (11 sept) - Briançon → Barcelonnette (143.2 km, 4141 m, Izoard 2360m + Vars 2109m)
+6. **Dag 6** (12 sept) - Barcelonnette → Saint-André (107.5 km, 2660 m, Cayolle 2326m)
+7. **Dag 7** (13 sept) - Saint-André → Forcalquier (147.2 km, 2763 m, Illoire 964m)
+8. **Dag 8** (14 sept) - Forcalquier → Malaucène (125.4 km, 2867 m, Signal de Lure 1826m + Mont Ventoux 1912m)
 9. **Dag 9** (15 sept) - Terugreis naar huis
 
 ### Hoogtepunten
