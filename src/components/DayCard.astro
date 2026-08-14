@@ -1,5 +1,6 @@
 ---
 import type { Day } from "../data/trip";
+import ElevationProfile from "./ElevationProfile.astro";
 import InteractiveMap from "./InteractiveMap.astro";
 
 interface Props {
@@ -85,6 +86,14 @@ const { day } = Astro.props;
           </div>
         )
       }
+
+      {day.ride?.gpxFile && (
+        <ElevationProfile
+          gpxFile={day.ride.gpxFile}
+          gpxFileShort={day.ride.gpxFileShort}
+          dayNumber={day.dayNumber}
+        />
+      )}
 
       {/* Hotel Info */}
       {
