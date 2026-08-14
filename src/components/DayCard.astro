@@ -87,13 +87,15 @@ const { day } = Astro.props;
         )
       }
 
-      {day.ride?.gpxFile && (
-        <ElevationProfile
-          gpxFile={day.ride.gpxFile}
-          gpxFileShort={day.ride.gpxFileShort}
-          dayNumber={day.dayNumber}
-        />
-      )}
+      {
+        day.ride?.gpxFile && (
+          <ElevationProfile
+            gpxFile={day.ride.gpxFile}
+            gpxFileShort={day.ride.gpxFileShort}
+            dayNumber={day.dayNumber}
+          />
+        )
+      }
 
       {/* Hotel Info */}
       {
