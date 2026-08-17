@@ -78,9 +78,12 @@ export const tripData: Day[] = [
     ride: {
       distance: 91,
       elevation: 3138,
-      cols: [{ name: "Col de l'Iseran", elevation: 2764 }],
+      cols: [
+        { name: "Col du Méraillet", elevation: 1605 },
+        { name: "Cormet de Roselend", elevation: 1968 },
+      ],
       description:
-        "De hoogste bergpas in de Alpen! Een spectaculaire klim naar de Col de l'Iseran op 2764m. Dit is de kroon op de eerste echte klimdag.",
+        "De eerste echte bergdag: via Beaufort omhoog naar de Col du Méraillet, langs het stuwmeer van Roselend en over het Cormet de Roselend (1968m). Daarna afdalen naar Bourg-Saint-Maurice en de lange slotklim door de Tarentaise naar Val-d'Isère.",
       gpxFile: "/gpx/TDGC_2026-09-08.gpx",
     },
   },
@@ -102,9 +105,12 @@ export const tripData: Day[] = [
     ride: {
       distance: 113,
       elevation: 2085,
-      cols: [{ name: "Mont Cenis", elevation: 2083 }],
+      cols: [
+        { name: "Col de l'Iseran", elevation: 2764 },
+        { name: "Col du Mont Cenis", elevation: 2083 },
+      ],
       description:
-        "Via Mont Cenis richting Saint Michel de Maurienne. Een prachtige route door het grensgebied met Italië.",
+        "Meteen vanuit het hotel omhoog naar de Col de l'Iseran (2764m), de hoogste verharde bergpas van de Alpen. Daarna de lange afdaling via Bonneval-sur-Arc de Maurienne in, met de Col du Mont Cenis in het grensgebied met Italië als tweede klim, en tot slot naar Saint Michel de Maurienne.",
       gpxFile: "/gpx/TDGC_2026-09-09.gpx",
     },
   },
@@ -129,9 +135,10 @@ export const tripData: Day[] = [
       cols: [
         { name: "Col du Télégraphe", elevation: 1566 },
         { name: "Col du Galibier", elevation: 2645 },
+        { name: "Col de Granon", elevation: 2413 },
       ],
       description:
-        "De legendarische Galibier! Via Col du Télégraphe naar de mythische Col du Galibier, een van de meest iconische cols uit de Tour de France.",
+        "De legendarische Galibier! Via de Col du Télégraphe naar de mythische Col du Galibier, een van de meest iconische cols uit de Tour de France. Daarna over de Col du Lautaret naar beneden, om vanuit Saint-Chaffrey nog de steile Col de Granon (2413m) mee te pikken voor de afdaling naar Briançon.",
       gpxFile: "/gpx/TDGC_2026-09-10.gpx",
     },
   },
@@ -155,9 +162,10 @@ export const tripData: Day[] = [
       cols: [
         { name: "Col d'Izoard", elevation: 2360 },
         { name: "Col de Vars", elevation: 2109 },
+        { name: "Cime de la Bonette", elevation: 2802 },
       ],
       description:
-        "De spectaculaire Col d'Izoard met zijn Casse Déserte, gevolgd door de Col de Vars. Twee prachtige cols op één dag.",
+        "De koningsrit. De spectaculaire Col d'Izoard met zijn Casse Déserte, gevolgd door de Col de Vars. In de lange versie volgt vanuit Jausiers nog de Cime de la Bonette (2802m), de hoogste verharde weg van Frankrijk. De korte versie (97km) slaat de Bonette over en rijdt na Vars rechtstreeks naar Barcelonnette.",
       gpxFile: "/gpx/TDGC_2026-09-11-lang.gpx",
       gpxFileShort: "/gpx/TDGC_2026-09-11-kort.gpx",
     },
@@ -183,9 +191,12 @@ export const tripData: Day[] = [
     ride: {
       distance: 107.5,
       elevation: 2660,
-      cols: [{ name: "Col de la Cayolle", elevation: 2326 }],
+      cols: [
+        { name: "Col de la Cayolle", elevation: 2326 },
+        { name: "Col des Champs", elevation: 2087 },
+      ],
       description:
-        "Via de prachtige Col de la Cayolle. Mogelijk optie om de Col de la Bonette (2860m, hoogste verharde bergpas in de Alpen) te rijden.",
+        "Vanuit Barcelonnette door de Gorges du Bachelard omhoog naar de prachtige Col de la Cayolle. Via Saint-Martin-d'Entraunes daarna over de Col des Champs (2087m) naar Colmars en verder door de Verdon-vallei naar Saint-André-les-Alpes.",
       gpxFile: "/gpx/TDGC_2026-09-12.gpx",
     },
   },
@@ -210,9 +221,12 @@ export const tripData: Day[] = [
     ride: {
       distance: 147.2,
       elevation: 2763,
-      cols: [{ name: "Col d'Illoire", elevation: 964 }],
+      cols: [
+        { name: "Col de Cheiron", elevation: 887 },
+        { name: "Col d'Illoire", elevation: 964 },
+      ],
       description:
-        "Door de spectaculaire Gorges du Verdon, een van de mooiste natuurgebieden van Frankrijk. Route met vele korte klimmetjes.",
+        "Over de Col de Cheiron richting Castellane en dan de Corniche Sublime door de spectaculaire Gorges du Verdon, met de Col d'Illoire hoog boven het Lac de Sainte-Croix. Daarna door de Provence naar Forcalquier. Geen grote cols, wel heel veel korte klimmetjes. De korte versie is 122km.",
       gpxFile: "/gpx/TDGC_2026-09-13.gpx",
       gpxFileShort: "/gpx/TDGC_2026-09-13-kort.gpx",
     },
@@ -237,11 +251,11 @@ export const tripData: Day[] = [
       distance: 125.4,
       elevation: 2867,
       cols: [
-        { name: "Signal de Lure", elevation: 1826 },
+        { name: "Col de Notre-Dame des Abeilles", elevation: 996 },
         { name: "Mont Ventoux", elevation: 1912 },
       ],
       description:
-        "De finale! Via Signal de Lure naar de legendarische Mont Ventoux. De Reus van de Provence als apotheose van de week.",
+        "De finale! Via Banon en de Col de Notre-Dame des Abeilles naar de Gorges de la Nesque, en dan afdalen naar Bédoin voor de klassieke beklimming van de Mont Ventoux (21km). De Reus van de Provence als apotheose van de week, met daarna de afdaling naar Malaucène.",
       gpxFile: "/gpx/TDGC_2026-09-14.gpx",
     },
   },
