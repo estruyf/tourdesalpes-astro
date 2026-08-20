@@ -50,7 +50,7 @@ export const tripData: Day[] = [
       phone: "+33 4 86 80 29 70",
       website: "https://all.accor.com",
       rooms: [
-        "2 x tweepersoonskamers met dubbelbed",
+        "1 x tweepersoonskamers met dubbelbed",
         "1 x tweepersoonskamer met twee aparte bedden",
         "2 x eenpersoonskamers",
       ],
@@ -69,7 +69,6 @@ export const tripData: Day[] = [
       phone: "+33 4 79 06 02 00",
       website: "http://www.hotel-avancher-valdisere.com/",
       rooms: [
-        "1 x tweepersoonskamer met dubbelbed",
         "1 x junior suite voor 3 personen",
         "1 x familiekamer voor 3 personen",
       ],
@@ -99,7 +98,7 @@ export const tripData: Day[] = [
         "25 rue du Général Ferrier, 73140 Saint Michel de Maurienne, France",
       phone: "+33 4 79 56 55 12",
       website: "https://www.savoyhotel.fr/",
-      rooms: ["3 x tweepersoonskamers", "2 x eenpersoonskamers"],
+      rooms: ["2 x tweepersoonskamers", "2 x eenpersoonskamers"],
       evCharging: false,
     },
     ride: {
@@ -126,7 +125,7 @@ export const tripData: Day[] = [
         "Centre commercial Grande Boucle, Avenue du Dauphiné, 05100 Briançon, France",
       phone: "+33 4 92 20 02 00",
       website: "http://www.suitehome-briancon.com/",
-      rooms: ["3 x tweepersoonskamers", "2 x eenpersoonskamers"],
+      rooms: ["2 x tweepersoonskamers", "2 x eenpersoonskamers"],
       evCharging: false,
     },
     ride: {
@@ -153,7 +152,7 @@ export const tripData: Day[] = [
       address: "3 rue François Arnaud, 04400 Barcelonnette",
       phone: "+33 4 92 81 46 36",
       website: "https://www.azteca-hotel.fr/",
-      rooms: ["3 x tweepersoonskamers", "2 x eenpersoonskamers"],
+      rooms: ["2 x tweepersoonskamers", "2 x eenpersoonskamers"],
       evCharging: false,
     },
     ride: {
@@ -183,7 +182,7 @@ export const tripData: Day[] = [
       website: "https://hotel-belair.com/",
       rooms: [
         "1 x eenpersoonskamer",
-        "3 x tweepersoonskamers",
+        "2 x tweepersoonskamers",
         "1 x tweepersoonskamer met twee aparte bedden",
       ],
       evCharging: true,
@@ -212,7 +211,7 @@ export const tripData: Day[] = [
       phone: "+33 4 92 75 00 35",
       website: "https://www.grandhotel-forcalquier.fr/",
       rooms: [
-        "2 x tweepersoonskamers",
+        "1 x tweepersoonskamer",
         "1 x tweepersoonskamer met twee aparte bedden",
         "2 x eenpersoonskamers",
       ],
@@ -241,10 +240,7 @@ export const tripData: Day[] = [
       name: "Ventoux Ride",
       address: "Route de Beaumont 4, 84340 Malaucène",
       phone: "",
-      rooms: [
-        "1 appartement met 2 slaapkamers",
-        "1 appartement met 3 slaapkamers",
-      ],
+      rooms: ["1 appartement met 3 slaapkamers"],
       evCharging: true,
     },
     ride: {
