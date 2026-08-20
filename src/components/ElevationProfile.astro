@@ -12,6 +12,7 @@ const profileId = `elevation-profile-${dayNumber}`;
 <section
   class="elevation-profile mb-4 overflow-hidden rounded-lg border border-navy-100 bg-navy-50/50"
   data-profile-id={profileId}
+  data-day-number={dayNumber}
   data-gpx={gpxFile}
   aria-labelledby={`${profileId}-title`}
 >
@@ -31,10 +32,22 @@ const profileId = `elevation-profile-${dayNumber}`;
 
       {gpxFileShort && (
         <div class="profile-switch" role="group" aria-label="Kies route">
-          <button type="button" class="profile-selector" data-gpx={gpxFile} aria-pressed="true">
+          <button
+            type="button"
+            class="profile-selector"
+            data-route="long"
+            data-gpx={gpxFile}
+            aria-pressed="true"
+          >
             Lang
           </button>
-          <button type="button" class="profile-selector" data-gpx={gpxFileShort} aria-pressed="false">
+          <button
+            type="button"
+            class="profile-selector"
+            data-route="short"
+            data-gpx={gpxFileShort}
+            aria-pressed="false"
+          >
             Kort
           </button>
         </div>
@@ -366,14 +379,45 @@ const profileId = `elevation-profile-${dayNumber}`;
         chartTitle.textContent = "Hoogteprofiel niet beschikbaar";
       };
 
+      const dayNumber = Number(profile.getAttribute("data-day-number"));
+
+      const setRouteMode = (mode: "long" | "short") => {
+        const button = profile.querySelector<HTMLButtonElement>(
+          `.profile-selector[data-route="${mode}"]`,
+        );
+        if (!button) return;
+
+        const currentMode = profile.querySelector<HTMLButtonElement>(
+          '.profile-selector[aria-pressed="true"]',
+        )?.dataset.route;
+        if (currentMode === mode) return;
+
+        profile
+          .querySelectorAll<HTMLButtonElement>(".profile-selector")
+          .forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        hideCursor();
+        if (button.dataset.gpx) loadProfile(button.dataset.gpx).catch(fail);
+      };
+
       profile.querySelectorAll<HTMLButtonElement>(".profile-selector").forEach((button) => {
         button.addEventListener("click", () => {
-          profile
-            .querySelectorAll(".profile-selector")
-            .forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-          hideCursor();
-          if (button.dataset.gpx) loadProfile(button.dataset.gpx).catch(fail);
+          const mode = button.dataset.route as "long" | "short" | undefined;
+          if (!mode || !Number.isFinite(dayNumber)) return;
+          setRouteMode(mode);
+          window.dispatchEvent(
+            new CustomEvent("route-mode-change", {
+              detail: { dayNumber, mode },
+            }),
+          );
         });
+      });
+
+      window.addEventListener("route-mode-change", (event: Event) => {
+        const customEvent = event as CustomEvent<{ dayNumber?: number; mode?: "long" | "short" }>;
+        if (!customEvent.detail || customEvent.detail.dayNumber !== dayNumber || !customEvent.detail.mode) {
+          return;
+        }
+        setRouteMode(customEvent.detail.mode);
       });
 
       // GPX files run up to a megabyte, so only fetch once the card is in view.

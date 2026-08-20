@@ -15,6 +15,8 @@ export interface Col {
 export interface Ride {
   distance?: number;
   elevation?: number;
+  distanceShort?: number;
+  elevationShort?: number;
   cols: Col[];
   description: string;
   gpxFile?: string;
@@ -158,6 +160,8 @@ export const tripData: Day[] = [
     ride: {
       distance: 143.2,
       elevation: 4141,
+      distanceShort: 97,
+      elevationShort: 2806,
       cols: [
         { name: "Col d'Izoard", elevation: 2360 },
         { name: "Col de Vars", elevation: 2109 },
@@ -220,6 +224,8 @@ export const tripData: Day[] = [
     ride: {
       distance: 147.2,
       elevation: 2763,
+      distanceShort: 122,
+      elevationShort: 2289,
       cols: [
         { name: "Col de Cheiron", elevation: 887 },
         { name: "Col d'Illoire", elevation: 964 },

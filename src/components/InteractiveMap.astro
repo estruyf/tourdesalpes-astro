@@ -15,6 +15,7 @@ const mapId = `map-${dayNumber}`;
     id={mapId}
     class="flex-1 rounded-r-lg shadow-inner border border-gray-200"
     data-gpx={gpxFile}
+    data-day-number={dayNumber}
   >
   </div>
   {
@@ -24,6 +25,7 @@ const mapId = `map-${dayNumber}`;
           class="route-selector flex-1 px-3 py-2 text-sm font-medium rounded bg-turquoise-500 text-white"
           data-route="long"
           data-map-id={mapId}
+          data-day-number={dayNumber}
           data-gpx-long={gpxFile}
           data-gpx-short={gpxFileShort}
         >
@@ -33,6 +35,7 @@ const mapId = `map-${dayNumber}`;
           class="route-selector flex-1 px-3 py-2 text-sm font-medium rounded bg-gray-200 text-gray-700"
           data-route="short"
           data-map-id={mapId}
+          data-day-number={dayNumber}
           data-gpx-long={gpxFile}
           data-gpx-short={gpxFileShort}
         >
@@ -145,27 +148,44 @@ const mapId = `map-${dayNumber}`;
 
         // Handle route selection buttons
         const routeButtons = document.querySelectorAll(`[data-map-id="${id}"]`);
+        const setRouteMode = (mode: "long" | "short") => {
+          routeButtons.forEach((button) => {
+            const buttonRoute = button.getAttribute("data-route");
+            button.classList.toggle("bg-turquoise-500", buttonRoute === mode);
+            button.classList.toggle("text-white", buttonRoute === mode);
+            button.classList.toggle("bg-gray-200", buttonRoute !== mode);
+            button.classList.toggle("text-gray-700", buttonRoute !== mode);
+          });
+
+          const firstButton = routeButtons[0] as HTMLElement | undefined;
+          const gpxLong = firstButton?.getAttribute("data-gpx-long");
+          const gpxShort = firstButton?.getAttribute("data-gpx-short");
+          const gpxToLoad = mode === "long" ? gpxLong : gpxShort;
+          if (gpxToLoad) loadGPX(gpxToLoad);
+        };
+
         routeButtons.forEach((button) => {
           button.addEventListener("click", (e) => {
             const target = e.target as HTMLButtonElement;
-            const route = target.getAttribute("data-route");
-            const gpxLong = target.getAttribute("data-gpx-long");
-            const gpxShort = target.getAttribute("data-gpx-short");
+            const route = target.getAttribute("data-route") as "long" | "short" | null;
+            const dayNumber = Number(target.getAttribute("data-day-number"));
 
-            // Update button styles
-            routeButtons.forEach((btn) => {
-              btn.classList.remove("bg-turquoise-500", "text-white");
-              btn.classList.add("bg-gray-200", "text-gray-700");
-            });
-            target.classList.remove("bg-gray-200", "text-gray-700");
-            target.classList.add("bg-turquoise-500", "text-white");
-
-            // Load appropriate GPX
-            const gpxToLoad = route === "long" ? gpxLong : gpxShort;
-            if (gpxToLoad) {
-              loadGPX(gpxToLoad);
-            }
+            if (!route || !Number.isFinite(dayNumber)) return;
+            setRouteMode(route);
+            window.dispatchEvent(
+              new CustomEvent("route-mode-change", {
+                detail: { dayNumber, mode: route },
+              }),
+            );
           });
+        });
+
+        window.addEventListener("route-mode-change", (event: Event) => {
+          const customEvent = event as CustomEvent<{ dayNumber?: number; mode?: "long" | "short" }>;
+          const detail = customEvent.detail;
+          const dayNumber = Number((mapElement as HTMLElement).getAttribute("data-day-number"));
+          if (!detail || detail.dayNumber !== dayNumber || !detail.mode) return;
+          setRouteMode(detail.mode);
         });
 
         // Enable scroll zoom on click

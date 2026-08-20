@@ -80,6 +80,7 @@ import { routeGpxFiles, routeTowns, tripStats } from "../data/trip";
           >
             <div
               class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-navy-900 to-navy-700 bg-clip-text text-transparent"
+              data-total-distance={tripStats.totalDistance}
             >
               {tripStats.totalDistance}
             </div>
@@ -94,6 +95,7 @@ import { routeGpxFiles, routeTowns, tripStats } from "../data/trip";
           >
             <div
               class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-navy-900 to-navy-700 bg-clip-text text-transparent"
+              data-total-elevation={tripStats.totalElevation}
             >
               {tripStats.totalElevation.toLocaleString("nl-NL")}
             </div>
@@ -166,3 +168,121 @@ import { routeGpxFiles, routeTowns, tripStats } from "../data/trip";
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  type RouteMode = "long" | "short";
+
+  const parseValue = (value: string | null) => {
+    if (!value) return undefined;
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : undefined;
+  };
+
+  const formatDistance = (distance: number) =>
+    distance.toLocaleString("nl-NL", {
+      minimumFractionDigits: Number.isInteger(distance) ? 0 : 1,
+      maximumFractionDigits: 1,
+    });
+
+  const formatElevation = (elevation: number) =>
+    Math.round(elevation).toLocaleString("nl-NL");
+
+  const setupRouteModeTotals = () => {
+    const totalDistanceElement = document.querySelector<HTMLElement>("[data-total-distance]");
+    const totalElevationElement = document.querySelector<HTMLElement>("[data-total-elevation]");
+
+    if (!totalDistanceElement || !totalElevationElement) return;
+
+    const dayMetrics = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-day-metrics]"),
+    )
+      .map((element) => {
+        const dayNumber = parseValue(element.getAttribute("data-day-number"));
+        const distanceLong = parseValue(element.getAttribute("data-distance-long"));
+        const elevationLong = parseValue(element.getAttribute("data-elevation-long"));
+        const distanceShort = parseValue(element.getAttribute("data-distance-short"));
+        const elevationShort = parseValue(element.getAttribute("data-elevation-short"));
+
+        if (!dayNumber || distanceLong === undefined || elevationLong === undefined) {
+          return undefined;
+        }
+
+        return {
+          dayNumber,
+          distanceLong,
+          elevationLong,
+          distanceShort,
+          elevationShort,
+          distanceElement: element.querySelector<HTMLElement>("[data-day-distance]"),
+          elevationElement: element.querySelector<HTMLElement>("[data-day-elevation]"),
+        };
+      })
+      .filter((metric): metric is NonNullable<typeof metric> => Boolean(metric));
+
+    const selectedModes = new Map<number, RouteMode>();
+
+    const updateCardMetric = (metric: (typeof dayMetrics)[number], mode: RouteMode) => {
+      const distance =
+        mode === "short" && metric.distanceShort !== undefined
+          ? metric.distanceShort
+          : metric.distanceLong;
+      const elevation =
+        mode === "short" && metric.elevationShort !== undefined
+          ? metric.elevationShort
+          : metric.elevationLong;
+
+      if (metric.distanceElement) {
+        metric.distanceElement.innerHTML = `${formatDistance(distance)} <span class="text-sm font-medium text-navy-400 ml-0.5">km</span>`;
+      }
+
+      if (metric.elevationElement) {
+        metric.elevationElement.innerHTML = `${formatElevation(elevation)} <span class="text-sm font-medium text-navy-400 ml-0.5">m</span>`;
+      }
+    };
+
+    const updateTotals = () => {
+      const totals = dayMetrics.reduce(
+        (sum, metric) => {
+          const mode = selectedModes.get(metric.dayNumber) ?? "long";
+          const distance =
+            mode === "short" && metric.distanceShort !== undefined
+              ? metric.distanceShort
+              : metric.distanceLong;
+          const elevation =
+            mode === "short" && metric.elevationShort !== undefined
+              ? metric.elevationShort
+              : metric.elevationLong;
+
+          return {
+            distance: sum.distance + distance,
+            elevation: sum.elevation + elevation,
+          };
+        },
+        { distance: 0, elevation: 0 },
+      );
+
+      totalDistanceElement.textContent = formatDistance(totals.distance);
+      totalElevationElement.textContent = formatElevation(totals.elevation);
+    };
+
+    window.addEventListener("route-mode-change", (event: Event) => {
+      const customEvent = event as CustomEvent<{ dayNumber?: number; mode?: RouteMode }>;
+      const dayNumber = customEvent.detail?.dayNumber;
+      const mode = customEvent.detail?.mode;
+      if (!dayNumber || !mode) return;
+
+      selectedModes.set(dayNumber, mode);
+
+      const metric = dayMetrics.find((item) => item.dayNumber === dayNumber);
+      if (metric) updateCardMetric(metric, mode);
+
+      updateTotals();
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupRouteModeTotals);
+  } else {
+    setupRouteModeTotals();
+  }
+</script>

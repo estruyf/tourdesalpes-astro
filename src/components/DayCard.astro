@@ -51,12 +51,23 @@ const { day } = Astro.props;
 
       {
         day.ride && (
-          <div class="grid grid-cols-2 gap-3 mb-8">
+          <div
+            class="grid grid-cols-2 gap-3 mb-8"
+            data-day-metrics
+            data-day-number={day.dayNumber}
+            data-distance-long={day.ride.distance}
+            data-elevation-long={day.ride.elevation}
+            data-distance-short={day.ride.distanceShort}
+            data-elevation-short={day.ride.elevationShort}
+          >
             <div class="px-4 py-3 bg-navy-50 rounded-xl border border-navy-100">
               <div class="text-[10px] sm:text-xs text-navy-400 font-bold uppercase tracking-wider mb-1">
                 Afstand
               </div>
-              <div class="text-2xl font-black text-navy-800 tracking-tight">
+              <div
+                class="text-2xl font-black text-navy-800 tracking-tight"
+                data-day-distance
+              >
                 {day.ride.distance}{" "}
                 <span class="text-sm font-medium text-navy-400 ml-0.5">km</span>
               </div>
@@ -65,7 +76,10 @@ const { day } = Astro.props;
               <div class="text-[10px] sm:text-xs text-navy-400 font-bold uppercase tracking-wider mb-1">
                 Hoogtemeters
               </div>
-              <div class="text-2xl font-black text-navy-800 tracking-tight">
+              <div
+                class="text-2xl font-black text-navy-800 tracking-tight"
+                data-day-elevation
+              >
                 {day.ride.elevation}{" "}
                 <span class="text-sm font-medium text-navy-400 ml-0.5">m</span>
               </div>
