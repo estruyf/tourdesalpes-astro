@@ -167,7 +167,8 @@ const mapId = `map-${dayNumber}`;
         routeButtons.forEach((button) => {
           button.addEventListener("click", (e) => {
             const target = e.target as HTMLButtonElement;
-            const route = target.getAttribute("data-route") as "long" | "short" | null;
+            const route = target.getAttribute("data-route") as
+              "long" | "short" | null;
             const dayNumber = Number(target.getAttribute("data-day-number"));
 
             if (!route || !Number.isFinite(dayNumber)) return;
@@ -181,9 +182,14 @@ const mapId = `map-${dayNumber}`;
         });
 
         window.addEventListener("route-mode-change", (event: Event) => {
-          const customEvent = event as CustomEvent<{ dayNumber?: number; mode?: "long" | "short" }>;
+          const customEvent = event as CustomEvent<{
+            dayNumber?: number;
+            mode?: "long" | "short";
+          }>;
           const detail = customEvent.detail;
-          const dayNumber = Number((mapElement as HTMLElement).getAttribute("data-day-number"));
+          const dayNumber = Number(
+            (mapElement as HTMLElement).getAttribute("data-day-number"),
+          );
           if (!detail || detail.dayNumber !== dayNumber || !detail.mode) return;
           setRouteMode(detail.mode);
         });

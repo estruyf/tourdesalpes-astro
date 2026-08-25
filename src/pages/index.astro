@@ -188,8 +188,12 @@ import { routeGpxFiles, routeTowns, tripStats } from "../data/trip";
     Math.round(elevation).toLocaleString("nl-NL");
 
   const setupRouteModeTotals = () => {
-    const totalDistanceElement = document.querySelector<HTMLElement>("[data-total-distance]");
-    const totalElevationElement = document.querySelector<HTMLElement>("[data-total-elevation]");
+    const totalDistanceElement = document.querySelector<HTMLElement>(
+      "[data-total-distance]",
+    );
+    const totalElevationElement = document.querySelector<HTMLElement>(
+      "[data-total-elevation]",
+    );
 
     if (!totalDistanceElement || !totalElevationElement) return;
 
@@ -198,12 +202,24 @@ import { routeGpxFiles, routeTowns, tripStats } from "../data/trip";
     )
       .map((element) => {
         const dayNumber = parseValue(element.getAttribute("data-day-number"));
-        const distanceLong = parseValue(element.getAttribute("data-distance-long"));
-        const elevationLong = parseValue(element.getAttribute("data-elevation-long"));
-        const distanceShort = parseValue(element.getAttribute("data-distance-short"));
-        const elevationShort = parseValue(element.getAttribute("data-elevation-short"));
+        const distanceLong = parseValue(
+          element.getAttribute("data-distance-long"),
+        );
+        const elevationLong = parseValue(
+          element.getAttribute("data-elevation-long"),
+        );
+        const distanceShort = parseValue(
+          element.getAttribute("data-distance-short"),
+        );
+        const elevationShort = parseValue(
+          element.getAttribute("data-elevation-short"),
+        );
 
-        if (!dayNumber || distanceLong === undefined || elevationLong === undefined) {
+        if (
+          !dayNumber ||
+          distanceLong === undefined ||
+          elevationLong === undefined
+        ) {
           return undefined;
         }
 
@@ -213,15 +229,24 @@ import { routeGpxFiles, routeTowns, tripStats } from "../data/trip";
           elevationLong,
           distanceShort,
           elevationShort,
-          distanceElement: element.querySelector<HTMLElement>("[data-day-distance]"),
-          elevationElement: element.querySelector<HTMLElement>("[data-day-elevation]"),
+          distanceElement: element.querySelector<HTMLElement>(
+            "[data-day-distance]",
+          ),
+          elevationElement: element.querySelector<HTMLElement>(
+            "[data-day-elevation]",
+          ),
         };
       })
-      .filter((metric): metric is NonNullable<typeof metric> => Boolean(metric));
+      .filter((metric): metric is NonNullable<typeof metric> =>
+        Boolean(metric),
+      );
 
     const selectedModes = new Map<number, RouteMode>();
 
-    const updateCardMetric = (metric: (typeof dayMetrics)[number], mode: RouteMode) => {
+    const updateCardMetric = (
+      metric: (typeof dayMetrics)[number],
+      mode: RouteMode,
+    ) => {
       const distance =
         mode === "short" && metric.distanceShort !== undefined
           ? metric.distanceShort
@@ -266,7 +291,10 @@ import { routeGpxFiles, routeTowns, tripStats } from "../data/trip";
     };
 
     window.addEventListener("route-mode-change", (event: Event) => {
-      const customEvent = event as CustomEvent<{ dayNumber?: number; mode?: RouteMode }>;
+      const customEvent = event as CustomEvent<{
+        dayNumber?: number;
+        mode?: RouteMode;
+      }>;
       const dayNumber = customEvent.detail?.dayNumber;
       const mode = customEvent.detail?.mode;
       if (!dayNumber || !mode) return;
